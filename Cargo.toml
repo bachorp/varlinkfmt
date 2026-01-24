@@ -1,0 +1,18 @@
+[package]
+edition = "2024"
+name = "varlinkfmt"
+version = "0.1.0"
+description = "Formatter for Varlink"
+readme = "README.md"
+authors = ["Pascal Bachor"]
+license = "MIT"
+include = ["src/*", "*.scm", "/LICENSE"]
+repository = "https://github.com/bachorp/varlinkfmt"
+keywords = ["varlink", "formatter", "tree-sitter", "topiary"]
+categories = ["development-tools", "command-line-utilities"]
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+topiary-core = "0.7"
+topiary-tree-sitter-facade = "0.7"
+tree-sitter-varlink = "0.5"
