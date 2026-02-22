@@ -19,7 +19,7 @@ pub fn mk_language(indent: Indent) -> topiary_core::Language {
 }
 
 // Ensure blank line between interface declaration/typedef/error/method. Cannot be done using Topiary.
-fn space_members(formatted: &String) -> String {
+fn postprocess(formatted: &String) -> String {
     let mut lines_rev = Vec::<&str>::new();
     let mut need_space = false;
     for line in formatted.lines().rev() {
@@ -37,7 +37,7 @@ fn space_members(formatted: &String) -> String {
             || line.starts_with("error ")
             || line.starts_with("method ");
 
-        lines_rev.push(line);
+        lines_rev.push(line.trim_end()); // Topiary won't remove trailing whitespace in comments
     }
 
     lines_rev
@@ -61,5 +61,5 @@ pub fn format(
         },
     )?;
 
-    Ok(space_members(&String::from_utf8(output).unwrap()))
+    Ok(postprocess(&String::from_utf8(output).unwrap()))
 }
