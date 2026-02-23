@@ -3,7 +3,7 @@ use std::fs;
 use std::io::{self, Read};
 use std::path::PathBuf;
 
-use varlinkfmt::{Indent, format, mk_language};
+use varlinkfmt_core::{Indent, format, mk_language};
 
 #[derive(Parser)]
 #[command(version)]

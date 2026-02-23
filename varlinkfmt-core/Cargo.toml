@@ -1,0 +1,15 @@
+[dependencies]
+topiary-core = "0.7"
+tree-sitter-varlink = "0.5"
+
+[package]
+authors.workspace = true
+categories = ["development-tools"]
+description = "Formatter for Varlink"
+edition.workspace = true
+include = ["/src/*", "/*.scm"]
+keywords.workspace = true
+license.workspace = true
+name = "varlinkfmt-core"
+repository.workspace = true
+version.workspace = true

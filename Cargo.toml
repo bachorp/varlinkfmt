@@ -1,18 +1,27 @@
-[package]
-edition = "2024"
-name = "varlinkfmt"
-version = "0.1.0"
-description = "Formatter for Varlink"
-readme = "README.md"
-authors = ["Pascal Bachor"]
-license = "MIT"
-include = ["src/*", "*.scm", "/LICENSE"]
-repository = "https://github.com/bachorp/varlinkfmt"
-keywords = ["varlink", "formatter", "tree-sitter", "topiary"]
-categories = ["development-tools", "command-line-utilities"]
-
 [dependencies]
 clap = { version = "4", features = ["derive"] }
-topiary-core = "0.7"
-topiary-tree-sitter-facade = "0.7"
-tree-sitter-varlink = "0.5"
+varlinkfmt-core = { path = "varlinkfmt-core", version = "0.2.0" }
+
+[workspace]
+members = ["varlinkfmt-core"]
+
+[workspace.package]
+authors = ["Pascal Bachor"]
+edition = "2024"
+keywords = ["varlink", "formatter", "tree-sitter", "topiary"]
+license = "MIT"
+repository = "https://github.com/bachorp/varlinkfmt"
+version = "0.2.0"
+
+[package]
+authors.workspace = true
+categories = ["development-tools", "command-line-utilities"]
+description = "Formatter for Varlink (CLI tool)"
+edition.workspace = true
+include = ["/src/*"]
+keywords.workspace = true
+license.workspace = true
+name = "varlinkfmt"
+readme = "README.md"
+repository.workspace = true
+version.workspace = true
