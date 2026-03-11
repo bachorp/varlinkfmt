@@ -1,10 +1,15 @@
-(interface
-    _ @allow_blank_line_before @prepend_hardline
-)
+[
+    (interface_declaration)
+    (typedef)
+    (error)
+    (method)
+] @allow_blank_line_before @prepend_hardline
 
-(interface
-    (_ (name) @append_space)
-)
+[
+    (typedef name: (_) @append_space)
+    (error name: (_) @append_space)
+    (method name: (_) @append_space)
+]
 
 [
     (keyword_interface)
