@@ -1,6 +1,6 @@
 [dependencies]
 clap = { version = "4", features = ["derive"] }
-varlinkfmt-core = { path = "varlinkfmt-core", version = "0.2.0" }
+varlinkfmt-core = { path = "varlinkfmt-core", version = "0.3.0" }
 
 [workspace]
 members = ["varlinkfmt-core"]
@@ -11,7 +11,7 @@ edition = "2024"
 keywords = ["varlink", "formatter", "tree-sitter", "topiary"]
 license = "MIT"
 repository = "https://github.com/bachorp/varlinkfmt"
-version = "0.2.0"
+version = "0.3.0"
 
 [package]
 authors.workspace = true

@@ -1,6 +1,6 @@
 [dependencies]
 topiary-core = "0.7"
-tree-sitter-varlink = "0.5"
+tree-sitter-varlink = "0.6"
 
 [package]
 authors.workspace = true
