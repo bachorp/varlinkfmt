@@ -1,5 +1,6 @@
 [dependencies]
 topiary-core = "0.7"
+topiary-tree-sitter-facade = "0.7"
 tree-sitter-varlink = "0.6"
 
 [package]

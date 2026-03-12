@@ -866,7 +866,7 @@ checksum = "06abde3611657adf66d383f00b093d7faecc7fa57071cce2578660c9f1010821"
 
 [[package]]
 name = "varlinkfmt"
-version = "0.3.0"
+version = "0.4.0"
 dependencies = [
  "clap",
  "varlinkfmt-core",
@@ -874,9 +874,10 @@ dependencies = [
 
 [[package]]
 name = "varlinkfmt-core"
-version = "0.3.0"
+version = "0.4.0"
 dependencies = [
  "topiary-core",
+ "topiary-tree-sitter-facade",
  "tree-sitter-varlink",
 ]
 

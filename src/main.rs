@@ -1,9 +1,9 @@
 use clap::Parser;
-use std::fs;
-use std::io::{self, Read};
+use std::fs::OpenOptions;
+use std::io::{self, Seek, SeekFrom, Write};
 use std::path::PathBuf;
 
-use varlinkfmt_core::{Indent, format, mk_language};
+use varlinkfmt_core::{Indent, formatter, mk_language};
 
 #[derive(Parser)]
 #[command(version)]
@@ -51,27 +51,34 @@ fn main() {
 
     if args.inplace {
         for path in args.files {
-            match fs::read_to_string(&path) {
-                Err(e) => errexit!("Failure reading `{}`:\n{}", path.display(), e),
-                Ok(contents) => match format(&language, &mut contents.as_bytes()) {
-                    Err(e) => errexit!("Failure formatting `{}`:\n{}", path.display(), e),
-                    Ok(out) => {
-                        if let Err(e) = fs::write(&path, out) {
-                            errexit!("Failure writing `{}`:\n{}", path.display(), e);
-                        }
+            match OpenOptions::new().read(true).write(true).open(&path) {
+                Err(err) => errexit!("Failure opening `{}`: {}", path.display(), err),
+                Ok(mut file) => {
+                    let mut output = Vec::new();
+                    if let Err(err) =
+                        formatter(&mut file, &mut output, &language, Default::default())
+                    {
+                        errexit!("Failure formatting `{}`: {}", path.display(), err);
                     }
-                },
-            }
+
+                    if let Err(err) = file
+                        .seek(SeekFrom::Start(0))
+                        .and_then(|_| file.set_len(0))
+                        .and_then(|_| file.write_all(&output))
+                    {
+                        errexit!("Failure writing `{}`: {}", path.display(), err);
+                    }
+                }
+            };
         }
     } else {
-        let mut stdin = String::new();
-        if let Err(e) = io::stdin().read_to_string(&mut stdin) {
-            errexit!("Failure reading from stdin:\n{}", e);
-        }
-
-        match format(&language, &mut stdin.as_bytes()) {
-            Err(e) => errexit!("Failure formatting:\n{}", e),
-            Ok(out) => print!("{}", out),
+        if let Err(err) = formatter(
+            &mut io::stdin(),
+            &mut io::stdout(),
+            &language,
+            Default::default(),
+        ) {
+            errexit!("Failure formatting: {}", err);
         }
     }
 }
