@@ -12,5 +12,6 @@ include = ["/src/*", "/*.scm"]
 keywords.workspace = true
 license.workspace = true
 name = "varlinkfmt-core"
+readme = "README.md"
 repository.workspace = true
 version.workspace = true

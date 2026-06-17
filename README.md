@@ -5,6 +5,8 @@
 Formatter for [Varlink](https://varlink.org).
 Using [tree-sitter-varlink](https://github.com/bachorp/tree-sitter-varlink) and [Topiary](https://topiary.tweag.io/).
 
+See also [varlinkfmt-core](https://crates.io/crates/varlinkfmt-core).
+
 [crates]: https://img.shields.io/crates/v/varlinkfmt?logo=rust
 
 ## Installation
